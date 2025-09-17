@@ -1,0 +1,516 @@
+class Book {
+    String title;
+    String author;
+    double price;
+    
+    // Default constructor
+    Book() {
+        this.title = "Unknown Title";
+        this.author = "Unknown Author";
+        this.price = 0.0;
+    }
+    
+    // Parameterized constructor
+    Book(String title, String author, double price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+    
+    // Method to display book details
+    void display() {
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Price: $" + price);
+    }
+}
+✅ 2. Circle Class with Constructor Chaining
+java
+Copy code
+class Circle {
+    double radius;
+    
+    // Default constructor
+    Circle() {
+        this(1.0); // Calls the parameterized constructor
+    }
+    
+    // Parameterized constructor
+    Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    void display() {
+        System.out.println("Radius: " + radius);
+    }
+}
+✅ 3. Person Class with Copy Constructor
+java
+Copy code
+class Person {
+    String name;
+    int age;
+    
+    // Parameterized constructor
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Copy constructor
+    Person(Person other) {
+        this.name = other.name;
+        this.age = other.age;
+    }
+    
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+✅ 4. HotelBooking Class with Default, Parameterized, and Copy Constructors
+java
+Copy code
+class HotelBooking {
+    String guestName;
+    String roomType;
+    int nights;
+    
+    // Default constructor
+    HotelBooking() {
+        this.guestName = "Guest";
+        this.roomType = "Standard";
+        this.nights = 1;
+    }
+    
+    // Parameterized constructor
+    HotelBooking(String guestName, String roomType, int nights) {
+        this.guestName = guestName;
+        this.roomType = roomType;
+        this.nights = nights;
+    }
+    
+    // Copy constructor
+    HotelBooking(HotelBooking other) {
+        this.guestName = other.guestName;
+        this.roomType = other.roomType;
+        this.nights = other.nights;
+    }
+    
+    void display() {
+        System.out.println("Guest: " + guestName);
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Nights: " + nights);
+    }
+}
+✅ 5. Library Book System with Borrow Method
+java
+Copy code
+class LibraryBook {
+    String title;
+    String author;
+    double price;
+    boolean availability;
+    
+    // Constructor
+    LibraryBook(String title, String author, double price, boolean availability) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.availability = availability;
+    }
+    
+    // Method to borrow the book
+    void borrowBook() {
+        if (availability) {
+            availability = false;
+            System.out.println("You have borrowed " + title);
+        } else {
+            System.out.println("Sorry, " + title + " is not available.");
+        }
+    }
+    
+    void display() {
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Price: $" + price);
+        System.out.println("Available: " + (availability ? "Yes" : "No"));
+    }
+}
+✅ 6. Car Rental System with Cost Calculation
+java
+Copy code
+class CarRental {
+    String customerName;
+    String carModel;
+    int rentalDays;
+    double ratePerDay = 50.0; // Example fixed rate
+    
+    // Parameterized constructor
+    CarRental(String customerName, String carModel, int rentalDays) {
+        this.customerName = customerName;
+        this.carModel = carModel;
+        this.rentalDays = rentalDays;
+    }
+    
+    // Method to calculate total cost
+    double calculateTotalCost() {
+        return rentalDays * ratePerDay;
+    }
+    
+    void display() {
+        System.out.println("Customer: " + customerName);
+        System.out.println("Car Model: " + carModel);
+        System.out.println("Rental Days: " + rentalDays);
+        System.out.println("Total Cost: $" + calculateTotalCost());
+    }
+}
+✅ How to Test These Classes
+You can create a main method in one or multiple files and instantiate the classes like this:
+
+java
+Copy code
+public class Main {
+    public static void main(String[] args) {
+        
+        // Testing Book class
+        Book b1 = new Book();
+        Book b2 = new Book("Java Programming", "John Doe", 29.99);
+        b1.display();
+        System.out.println();
+        b2.display();
+        
+        System.out.println("\n--- Circle ---");
+        Circle c1 = new Circle();
+        Circle c2 = new Circle(5.5);
+        c1.display();
+        c2.display();
+        
+        System.out.println("\n--- Person ---");
+        Person p1 = new Person("Alice", 25);
+        Person p2 = new Person(p1);
+        p1.display();
+        System.out.println();
+        p2.display();
+        
+        System.out.println("\n--- Hotel Booking ---");
+        HotelBooking h1 = new HotelBooking();
+        HotelBooking h2 = new HotelBooking("Bob", "Deluxe", 3);
+        HotelBooking h3 = new HotelBooking(h2);
+        h1.display();
+        System.out.println();
+        h2.display();
+        System.out.println();
+        h3.display();
+        
+        System.out.println("\n--- Library Book ---");
+        LibraryBook libBook = new LibraryBook("Effective Java", "Joshua Bloch", 45.0, true);
+        libBook.display();
+        libBook.borrowBook();
+        libBook.display();
+        
+        System.out.println("\n--- Car Rental ---");
+        CarRental carRental = new CarRental("Charlie", "SUV", 4);
+        carRental.display();
+    }
+}
+
+
+
+class Product {
+    String productName;
+    double price;
+    static int totalProducts = 0;
+
+    // Constructor
+    Product(String productName, double price) {
+        this.productName = productName;
+        this.price = price;
+        totalProducts++;
+    }
+
+    // Instance method
+    void displayProductDetails() {
+        System.out.println("Product Name: " + productName);
+        System.out.println("Price: $" + price);
+    }
+
+    // Class method
+    static void displayTotalProducts() {
+        System.out.println("Total Products: " + totalProducts);
+    }
+}
+✅ Problem 2: Online Course Management
+Requirements:
+Instance variables: courseName, duration, fee.
+
+Class variable: instituteName.
+
+Instance method: displayCourseDetails().
+
+Class method: updateInstituteName().
+
+✅ Code:
+java
+Copy code
+class Course {
+    String courseName;
+    int duration;
+    double fee;
+    static String instituteName = "Global Institute";
+
+    // Constructor
+    Course(String courseName, int duration, double fee) {
+        this.courseName = courseName;
+        this.duration = duration;
+        this.fee = fee;
+    }
+
+    // Instance method
+    void displayCourseDetails() {
+        System.out.println("Course Name: " + courseName);
+        System.out.println("Duration: " + duration + " months");
+        System.out.println("Fee: $" + fee);
+        System.out.println("Institute: " + instituteName);
+    }
+
+    // Class method
+    static void updateInstituteName(String newName) {
+        instituteName = newName;
+        System.out.println("Institute name updated to " + instituteName);
+    }
+}
+✅ Problem 3: Vehicle Registration
+Requirements:
+Instance variables: ownerName, vehicleType.
+
+Class variable: registrationFee.
+
+Instance method: displayVehicleDetails().
+
+Class method: updateRegistrationFee().
+
+✅ Code:
+java
+Copy code
+class Vehicle {
+    String ownerName;
+    String vehicleType;
+    static double registrationFee = 100.0;
+
+    // Constructor
+    Vehicle(String ownerName, String vehicleType) {
+        this.ownerName = ownerName;
+        this.vehicleType = vehicleType;
+    }
+
+    // Instance method
+    void displayVehicleDetails() {
+        System.out.println("Owner Name: " + ownerName);
+        System.out.println("Vehicle Type: " + vehicleType);
+        System.out.println("Registration Fee: $" + registrationFee);
+    }
+
+    // Class method
+    static void updateRegistrationFee(double newFee) {
+        registrationFee = newFee;
+        System.out.println("Registration fee updated to $" + registrationFee);
+    }
+}
+✅ Access Modifiers – Problem 1: University Management System
+Requirements:
+rollNumber (public), name (protected), CGPA (private).
+
+Methods to access and modify CGPA.
+
+Subclass PostgraduateStudent to demonstrate access.
+
+✅ Code:
+java
+Copy code
+class Student {
+    public int rollNumber;
+    protected String name;
+    private double CGPA;
+
+    // Constructor
+    Student(int rollNumber, String name, double CGPA) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.CGPA = CGPA;
+    }
+
+    // Getter for CGPA
+    public double getCGPA() {
+        return CGPA;
+    }
+
+    // Setter for CGPA
+    public void setCGPA(double CGPA) {
+        this.CGPA = CGPA;
+    }
+}
+
+class PostgraduateStudent extends Student {
+    String specialization;
+
+    PostgraduateStudent(int rollNumber, String name, double CGPA, String specialization) {
+        super(rollNumber, name, CGPA);
+        this.specialization = specialization;
+    }
+
+    void display() {
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name); // protected access
+        System.out.println("Specialization: " + specialization);
+    }
+}
+✅ Access Modifiers – Problem 2: Book Library System
+Requirements:
+ISBN (public), title (protected), author (private).
+
+Methods to set/get author.
+
+Subclass EBook demonstrating access.
+
+✅ Code:
+java
+Copy code
+class Book {
+    public String ISBN;
+    protected String title;
+    private String author;
+
+    // Constructor
+    Book(String ISBN, String title, String author) {
+        this.ISBN = ISBN;
+        this.title = title;
+        this.author = author;
+    }
+
+    // Getter for author
+    public String getAuthor() {
+        return author;
+    }
+
+    // Setter for author
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+}
+
+class EBook extends Book {
+    String format;
+
+    EBook(String ISBN, String title, String author, String format) {
+        super(ISBN, title, author);
+        this.format = format;
+    }
+
+    void display() {
+        System.out.println("ISBN: " + ISBN);
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + getAuthor());
+        System.out.println("Format: " + format);
+    }
+}
+✅ Access Modifiers – Problem 3: Bank Account Management
+Requirements:
+accountNumber (public), accountHolder (protected), balance (private).
+
+Methods to access/modify balance.
+
+Subclass SavingsAccount to demonstrate access.
+
+✅ Code:
+java
+Copy code
+class BankAccount {
+    public String accountNumber;
+    protected String accountHolder;
+    private double balance;
+
+    // Constructor
+    BankAccount(String accountNumber, String accountHolder, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolder = accountHolder;
+        this.balance = balance;
+    }
+
+    // Getter for balance
+    public double getBalance() {
+        return balance;
+    }
+
+    // Setter for balance
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+}
+
+class SavingsAccount extends BankAccount {
+    double interestRate;
+
+    SavingsAccount(String accountNumber, String accountHolder, double balance, double interestRate) {
+        super(accountNumber, accountHolder, balance);
+        this.interestRate = interestRate;
+    }
+
+    void display() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Holder: " + accountHolder);
+        System.out.println("Balance: $" + getBalance());
+        System.out.println("Interest Rate: " + interestRate + "%");
+    }
+}
+✅ Access Modifiers – Problem 4: Employee Records
+(The problem description is incomplete, so here’s a reasonable assumption.)
+
+Requirements:
+employeeID (public), department (protected), salary (private).
+
+Methods to access/modify salary.
+
+Subclass to demonstrate access.
+
+✅ Code:
+java
+Copy code
+class Employee {
+    public String employeeID;
+    protected String department;
+    private double salary;
+
+    // Constructor
+    Employee(String employeeID, String department, double salary) {
+        this.employeeID = employeeID;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    // Getter for salary
+    public double getSalary() {
+        return salary;
+    }
+
+    // Setter for salary
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+
+class Manager extends Employee {
+    int teamSize;
+
+    Manager(String employeeID, String department, double salary, int teamSize) {
+        super(employeeID, department, salary);
+        this.teamSize = teamSize;
+    }
+
+    void display() {
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Department: " + department);
+        System.out.println("Salary: $" + getSalary());
+        System.out.println("Team Size: " + teamSize);
+    }
+}
